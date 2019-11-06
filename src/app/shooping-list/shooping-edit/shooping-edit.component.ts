@@ -43,7 +43,7 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
     if (this.edititem) {
       this.shoopingListService.updateingredients(
         this.editindex,
-        this.edititemform
+       new ingredient(values.name, values.amount)
       );
     } else {
       this.shoopingListService.addnewingredient(
