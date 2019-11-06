@@ -32,6 +32,12 @@ export class ShoopingListService {
     this.ingredients.push(...ingdt);
    this.newingredient.next(this.ingredients.slice());
   }
+
+  updateingredients(index:number, newingre:ingredient)
+  {
+    this.ingredients[index]=newingre;
+   this.newingredient.next(this.ingredients.slice());
+  }
   
 
 }
