@@ -11,7 +11,7 @@
   </div>
   <div class='btn-toolbar'>
   <button type="submit" class='btn btn-success' [disabled]='!f.valid'>{{edititem?'Update':'Add'}}</button>
-  <button type="button" class='btn btn-danger'>Delete</button>
+  <button type="button" class='btn btn-danger' (click)='ondelete(f)' *ngIf='edititem'>Delete</button>
   <button type="button" class='btn btn-primary' (click)='onclickclear()'>Clear</button>
   </div>
    </form>

@@ -38,6 +38,11 @@ export class ShoopingListService {
     this.ingredients[index]=newingre;
     this.newingredient.next(this.ingredients.slice());
   }
+  deleteingredients(index:number)
+  {
+    this.ingredients.splice(index,1);
+    this.newingredient.next(this.ingredients.slice());
+  }
   
 
 }

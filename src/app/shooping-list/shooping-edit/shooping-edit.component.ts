@@ -50,15 +50,21 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
         new ingredient(values.name, values.amount)
       );
     }
-    this.edititem=false;
+    this.edititem = false;
     form.reset();
   }
-onclickclear()
-{
-  this.editform.reset();
-  this.edititem=false;
-}
 
+  ondelete(form:NgForm)
+  {
+    this.shoopingListService.deleteingredients(this.editindex);
+     form.reset();
+     this.edititem = false;
+  }
+
+  onclickclear() {
+    this.editform.reset();
+    this.edititem = false;
+  }
 
   ngOnDestroy() {
     this.subsc.unsubscribe();
