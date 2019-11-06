@@ -51,8 +51,15 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
       );
     }
     this.edititem=false;
-    this.editform.reset();
+    form.reset();
   }
+onclickclear()
+{
+  this.editform.reset();
+  this.edititem=false;
+}
+
+
   ngOnDestroy() {
     this.subsc.unsubscribe();
   }
