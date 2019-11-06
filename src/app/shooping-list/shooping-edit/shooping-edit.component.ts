@@ -38,7 +38,7 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
     );
   }
 
-  onAddIngredients(form: NgForm) {
+  onsubmitIngredients(form: NgForm) {
     const values = form.value;
     if (this.edititem) {
       this.shoopingListService.updateingredients(
@@ -50,6 +50,8 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
         new ingredient(values.name, values.amount)
       );
     }
+    this.edititem=false;
+    this.editform.reset();
   }
   ngOnDestroy() {
     this.subsc.unsubscribe();
