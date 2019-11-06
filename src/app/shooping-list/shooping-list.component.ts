@@ -26,7 +26,7 @@ constructor(private shoopingListService:ShoopingListService) { }
 
   editingredients(index:number)
   {
-    this.shoopingListService.newingredient.next(index);
+    this.shoopingListService.editingredient.next(index);
   }
 
 }
