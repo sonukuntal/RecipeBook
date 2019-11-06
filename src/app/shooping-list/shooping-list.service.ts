@@ -18,6 +18,10 @@ export class ShoopingListService {
   {
     return this.ingredients.slice();
   }
+  getingredientbyid(index:number)
+  {
+    return this.ingredients[index];
+  }
   addnewingredient(ingdt:ingredient)
   {
    this.ingredients.push(ingdt);

@@ -10,9 +10,11 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./shooping-edit.component.css']
 })
 export class ShoopingEditComponent implements OnInit,OnDestroy {
+  @ViewChild('f',{static:true}) editform:NgForm;
    subsc:Subscription;
    edititem=false;
    editindex:number;
+   edititemform:ingredient;
     
   constructor(private shoopingListService:ShoopingListService) { }
 
@@ -21,6 +23,11 @@ export class ShoopingEditComponent implements OnInit,OnDestroy {
      (index:number)=>{
        this.editindex=index;
        this.edititem=true;
+       this.edititemform=this.shoopingListService.getingredientbyid(index);
+       this.editform.setValue({
+         name:this.edititemform.name,
+         amount:this.edititemform.amount
+       })
       }
    )
   }
