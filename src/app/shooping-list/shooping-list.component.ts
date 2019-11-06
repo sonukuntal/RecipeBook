@@ -12,18 +12,11 @@ import {Subscription} from 'rxjs';
 export class ShoopingListComponent implements OnInit, OnDestroy {
 ingredients:ingredient[];
 unsubsing:Subscription;
-edititem=false;
-editindex:number;
-  constructor(private shoopingListService:ShoopingListService) { }
+constructor(private shoopingListService:ShoopingListService) { }
 
   ngOnInit() {
     this.ingredients=this.shoopingListService.getingredients();
-    this.unsubsing=this.shoopingListService.newingredient.subscribe(
-      (index:number)=>{
-       this.editindex=index;
-       this.edititem=true;
-      }
-    )
+    this.unsubsing=this.shoopingListService.newingredient.subscribe();
     ((ingdt:ingredient[])=>{this.ingredients=ingdt;})
   }
 

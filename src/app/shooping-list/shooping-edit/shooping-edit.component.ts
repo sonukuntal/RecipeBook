@@ -11,11 +11,18 @@ import {Subscription} from 'rxjs';
 })
 export class ShoopingEditComponent implements OnInit,OnDestroy {
    subsc:Subscription;
+   edititem=false;
+   editindex:number;
     
   constructor(private shoopingListService:ShoopingListService) { }
 
   ngOnInit() {
-   this.subsc= this.shoopingListService.editingredient.subscribe()
+   this.subsc= this.shoopingListService.editingredient.subscribe(
+     (index:number)=>{
+       this.editindex=index;
+       this.edititem=true;
+      }
+   )
   }
 
   onAddIngredients(form:NgForm)
