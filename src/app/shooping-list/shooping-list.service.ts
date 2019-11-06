@@ -35,7 +35,6 @@ export class ShoopingListService {
 
   updateingredients(index:number, newingre:ingredient)
   {
-    console.log(newingre);
     this.ingredients[index]=newingre;
     this.newingredient.next(this.ingredients.slice());
   }

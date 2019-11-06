@@ -16,7 +16,11 @@ constructor(private shoopingListService:ShoopingListService) { }
 
   ngOnInit() {
     this.ingredients=this.shoopingListService.getingredients();
-    this.unsubsing=this.shoopingListService.newingredient.subscribe();
+    this.unsubsing=this.shoopingListService.newingredient.subscribe(
+      (ing:ingredient[])=>{
+       this.ingredients=ing;
+      }
+    );
     ((ingdt:ingredient[])=>{this.ingredients=ingdt;})
   }
 
