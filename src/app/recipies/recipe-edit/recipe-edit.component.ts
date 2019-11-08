@@ -41,8 +41,8 @@ export class RecipeEditComponent implements OnInit {
         for (let ingredient of recipe.ingredients) {
           recipeingredients.push(
             new FormGroup({
-              name: new FormControl(ingredient.name,Validators.required),
-              amount: new FormControl(ingredient.amount,Validators.required)
+              name: new FormControl(ingredient.name, Validators.required),
+              amount: new FormControl(ingredient.amount, Validators.required)
             })
           );
         }
@@ -50,17 +50,33 @@ export class RecipeEditComponent implements OnInit {
     }
 
     this.recipeform = new FormGroup({
-      Name: new FormControl(recipeName, Validators.required),
-      ImageUrl: new FormControl(recipeimageurl, Validators.required),
-      Description: new FormControl(recipedescription, Validators.required),
+      name: new FormControl(recipeName, Validators.required),
+      imagePath: new FormControl(recipeimageurl, Validators.required),
+      description: new FormControl(recipedescription, Validators.required),
       ingredients: recipeingredients
     });
   }
 
-  onsubmitRecipe() {}
+  onsubmitRecipe() {
+    if(!this.editMode)
+    {
+      this.recipeService.addnewRecipie(this.recipeform.value);
+    }
+    else
+    {
+      this.recipeService.updateRecipe(this.id,this.recipeform.value);
+    }
+  }
 
- private get controls()
-  {
-   return (<FormArray>this.recipeform.get('ingredients')).controls;
+  private get controls() {
+    return (<FormArray>this.recipeform.get("ingredients")).controls;
+  }
+  onaddingredient() {
+    (<FormArray>this.recipeform.get("ingredients")).push(
+      new FormGroup({
+        name: new FormControl(),
+        amount: new FormControl()
+      })
+    );
   }
 }

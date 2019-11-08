@@ -16,8 +16,8 @@
     class='btn btn-primary dropdown-toogle'>Manage Recipe<span class='caret'></span></button>
     <ul class='dropdown-menu'>
     <li><a style='cursor:pointer' (click)='onaddtoshoopinglist()'>Add</a></li>
-    <li><a style='cursor:pointer' [routerLink]="['/recipies',index,'edit']">Edit</a></li>
-    <li><a style='cursor:pointer'>Delete</a></li>
+    <li><a style='cursor:pointer' (click)='oneditclick()'>Edit</a></li>
+    <li><a style='cursor:pointer' (click)='ondeleteclick()'>Delete</a></li>
     </ul>
   </div>
 </div>
