@@ -1,20 +1,47 @@
 <div class='row'>
 	<div class='col-xs-12'>
 		<form [formGroup]='recipeform' (ngSubmit)='onsubmitRecipe()'>
+      <div class='btn-toolbar'>
 			<button type='submit' class='btn btn-success'>Submit</button>
 			<button type='button' class='btn btn-danger'>Cancel</button>
+      </div>
+
 			<div class='form-group'>
 				<label>Name</label>
-				<input type='text' formControlName='Name' class='form-control'/>
+				<input type='text' id='name' formControlName='Name' class='form-control'/>
       </div>
+
 				<div class='form-group'>
-					<label>Description</label>
-					<textarea type='text' formControlName='Description' class='form-control'></textarea>
-				</div>
-				<div class='form-group'>
-					<label>Ingredients</label>
-					<input type='text' formControlName='Ingredients' class='form-control' rows='6'/><br/>
-      </div>
+					<label>ImageUrl</label>
+					<input type='text' id='imageurl' formControlName='ImageUrl' class='form-control'/>
+					<div>
+						<img src='' class='img-responsive'/>
+          </div>
+					</div>
+
+					<div class='form-group'>
+						<label>Description</label>
+						<textarea type='text' id='description' formControlName='Description' class='form-control' rows='6'></textarea>
+					</div>
+
+					<div class='form-group'>
+						<div class='row'>
+							<div class='col-xs-12' *ngFor="let ic of controls; let i=index" formArrayName='ingredients'>
+								<div class='row' [formGroupName]="i" >
+									<div class='col-xs-8'>
+										<input type='text' formControlName='name' class='form-control'/>
+  	              </div>
+										<div class='col-xs-2'>
+											<input type='number' formControlName='amount' class='form-control'/>
+                    </div>
+											<div class='col-xs-2'>
+												<button type='button' class='btn btn-danger'>X</button>
+                      </div>
+											</div>
+										</div>
+									</div>
+
+								</div>
 		</form>
 	</div>
 </div>
