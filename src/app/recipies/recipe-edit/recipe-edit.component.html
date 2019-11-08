@@ -13,9 +13,9 @@
 
 				<div class='form-group'>
 					<label>ImageUrl</label>
-					<input type='text' id='imageurl' formControlName='imagePath' class='form-control'/>
+					<input type='text' id='imageurl' formControlName='imagePath' class='form-control' #imagePath/>
 					<div>
-						<img src='' class='img-responsive'/>
+						<img [src]='imagePath.value' class='img-responsive'/>
           </div>
 					</div>
 
