@@ -24,6 +24,12 @@ new Recipe('Test Recipe','Recipe is awesome for eating and server',
 
   constructor(private shoopingListService:ShoopingListService) { }
 
+  setRecipe(rec:Recipe[])
+  {
+   this.recipies=rec;
+   this.recipeChange.next(this.recipies.slice());
+  }
+
   getrecipie()
   {
     return this.recipies.slice();
