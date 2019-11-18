@@ -20,11 +20,12 @@ import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.componen
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.component';
 import { DataStorageService } from './shared/data-storage.service';
+import { RecipiesResolverService } from './recipies/recipies-resolver.service';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule],
   declarations: [ AppComponent, RecipiesComponent, RecipeListComponent, ShoopingListComponent, RecipeItemComponent, ShoopingEditComponent, HeaderComponent, RecipeDetailComponent,DropdownDirective, RecipeEditComponent, ErrorpageComponent, RecipeStartComponent],
   bootstrap:    [ AppComponent ],
-  providers: [ShoopingListService,RecipiesService, DataStorageService]
+  providers: [ShoopingListService,RecipiesService, DataStorageService, RecipiesResolverService]
 })
 export class AppModule { }
