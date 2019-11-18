@@ -12,6 +12,7 @@ import { RecipeDetailComponent } from './recipies/recipe-detail/recipe-detail.co
 import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.component';
+import {RecipiesResolverService} from './recipies/recipies-resolver.service';
 
 
 const appRoutes:Routes=[
@@ -19,8 +20,8 @@ const appRoutes:Routes=[
   {path:'recipies',component:RecipiesComponent, children:[
     {path:'', component:RecipeStartComponent},
     {path:'new',component:RecipeEditComponent},
-    {path:':id',component:RecipeDetailComponent},
-    {path:':id/edit',component:RecipeEditComponent},
+    {path:':id',component:RecipeDetailComponent,resolve:[RecipiesResolverService]},
+    {path:':id/edit',component:RecipeEditComponent,resolve:[RecipiesResolverService]},
     {path:':list',component:RecipeListComponent,children:[
       {path:':id/:item',component:RecipeItemComponent}
     ]},
