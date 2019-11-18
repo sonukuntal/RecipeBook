@@ -29,12 +29,9 @@ export class DataStorageService {
     return this.httpclient
       .get<Recipe[]>("https://ng-course-recipe-book-550ed.firebaseio.com/recipies.json").pipe(map((recipies)=>{
        return recipies.map(recipie=>{
-         return{
-         ...recipie,
-         ingredient:recipie.ingredients?recipie.ingredients:[]
-         };
-       }),
-       tap(recipie=>{})
+         return{...recipie,ingredient:recipie.ingredients?recipie.ingredients:[]};});
+      }),tap(recipie=>{
+        this.recipeservice.setRecipe(recipie);
       })
       )
   }
