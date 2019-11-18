@@ -1,8 +1,10 @@
 import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
 
+
+import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RecipiesComponent } from './recipies/recipies.component';
 import { RecipeListComponent } from './recipies/recipe-list/recipe-list.component';
@@ -17,11 +19,12 @@ import { ShoopingListService } from './shooping-list/shooping-list.service';
 import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.component';
+import { DataStorageService } from './shared/data-storage.service';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule,AppRoutingModule,ReactiveFormsModule],
+  imports:      [ BrowserModule, FormsModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule],
   declarations: [ AppComponent, RecipiesComponent, RecipeListComponent, ShoopingListComponent, RecipeItemComponent, ShoopingEditComponent, HeaderComponent, RecipeDetailComponent,DropdownDirective, RecipeEditComponent, ErrorpageComponent, RecipeStartComponent],
   bootstrap:    [ AppComponent ],
-  providers: [ShoopingListService,RecipiesService]
+  providers: [ShoopingListService,RecipiesService, DataStorageService]
 })
 export class AppModule { }
