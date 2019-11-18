@@ -9,6 +9,7 @@ export class RecipiesComponent implements OnInit {
   constructor( ) { }
 
   ngOnInit() {
+    
   }
 
 }
