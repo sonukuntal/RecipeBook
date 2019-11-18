@@ -31,7 +31,7 @@ export class DataStorageService {
        return recipies.map(recipie=>{
          return{
          ...recipie,
-         ingredient:recipie.ingredient?recipie.ingredient:[]
+         ingredient:recipie.ingredients?recipie.ingredients:[]
          };
        }),
        tap(recipie=>{})
