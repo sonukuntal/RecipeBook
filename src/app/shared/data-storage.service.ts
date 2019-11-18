@@ -26,7 +26,7 @@ export class DataStorageService {
     return this.httpclient
       .get("https://ng-course-recipe-book-550ed.firebaseio.com/recipies.json")
       .subscribe(recipies => {
-        console.log(recipies);
+        this.recipeservice.setRecipe(recipies);
       });
   }
 }
