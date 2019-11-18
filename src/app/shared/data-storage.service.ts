@@ -22,5 +22,11 @@ export class DataStorageService {
       });
   }
 
-  fetchRecipes() {}
+  fetchRecipes() {
+    return this.httpclient
+      .get("https://ng-course-recipe-book-550ed.firebaseio.com/recipies.json")
+      .subscribe(recipies => {
+        console.log(recipies);
+      });
+  }
 }
