@@ -21,10 +21,11 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.component';
 import { DataStorageService } from './shared/data-storage.service';
 import { RecipiesResolverService } from './recipies/recipies-resolver.service';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule],
-  declarations: [ AppComponent, RecipiesComponent, RecipeListComponent, ShoopingListComponent, RecipeItemComponent, ShoopingEditComponent, HeaderComponent, RecipeDetailComponent,DropdownDirective, RecipeEditComponent, ErrorpageComponent, RecipeStartComponent],
+  declarations: [ AppComponent, RecipiesComponent, RecipeListComponent, ShoopingListComponent, RecipeItemComponent, ShoopingEditComponent, HeaderComponent, RecipeDetailComponent,DropdownDirective, RecipeEditComponent, ErrorpageComponent, RecipeStartComponent, AuthComponent],
   bootstrap:    [ AppComponent ],
   providers: [ShoopingListService,RecipiesService, DataStorageService, RecipiesResolverService]
 })

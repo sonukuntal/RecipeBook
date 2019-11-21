@@ -13,6 +13,7 @@ import { RecipeEditComponent } from './recipies/recipe-edit/recipe-edit.componen
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.component';
 import {RecipiesResolverService} from './recipies/recipies-resolver.service';
+import {AuthComponent} from './auth/auth.component';
 
 
 const appRoutes:Routes=[
@@ -26,6 +27,7 @@ const appRoutes:Routes=[
       {path:':id/:item',component:RecipeItemComponent}
     ]},
   ]},
+  {path:'auth', component:AuthComponent},
   {path:'shoopinglist',component:ShoopingListComponent,children:[
    {path:':id/:edit',component:ShoopingEditComponent}
   ]},
