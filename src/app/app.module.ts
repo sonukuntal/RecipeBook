@@ -22,11 +22,13 @@ import { RecipeStartComponent } from './recipies/recipe-start/recipe-start.compo
 import { DataStorageService } from './shared/data-storage.service';
 import { RecipiesResolverService } from './recipies/recipies-resolver.service';
 import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth/auth.service';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule],
-  declarations: [ AppComponent, RecipiesComponent, RecipeListComponent, ShoopingListComponent, RecipeItemComponent, ShoopingEditComponent, HeaderComponent, RecipeDetailComponent,DropdownDirective, RecipeEditComponent, ErrorpageComponent, RecipeStartComponent, AuthComponent],
+  declarations: [ AppComponent, RecipiesComponent, RecipeListComponent, ShoopingListComponent, RecipeItemComponent, ShoopingEditComponent, HeaderComponent, RecipeDetailComponent,DropdownDirective, RecipeEditComponent, ErrorpageComponent, RecipeStartComponent, AuthComponent, LoadingSpinnerComponent],
   bootstrap:    [ AppComponent ],
-  providers: [ShoopingListService,RecipiesService, DataStorageService, RecipiesResolverService]
+  providers: [ShoopingListService,RecipiesService, DataStorageService, RecipiesResolverService, AuthService]
 })
 export class AppModule { }
