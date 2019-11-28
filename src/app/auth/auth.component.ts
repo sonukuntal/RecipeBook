@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Observable } from "rxjs";
+import {Router} from '@angular/router';
 
 import { AuthService, AuthServiceData } from "./auth.service";
 
@@ -14,7 +15,7 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   error: string = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router:Router) {}
 
   ngOnInit() {}
   onSwitchMode() {
@@ -36,6 +37,7 @@ export class AuthComponent implements OnInit {
       resData => {
         console.log(resData);
         this.isLoading = false;
+        this.router.navigate(['recipies']);
       },
       errorMsg => {
         this.error = errorMsg;

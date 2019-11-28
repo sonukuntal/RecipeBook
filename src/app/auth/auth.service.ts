@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError } from "rxjs/operators";
-import { throwError } from "rxjs";
+import { catchError, tap } from "rxjs/operators";
+import { throwError, Subject } from "rxjs";
+
+import { User } from "./user.model";
 
 export interface AuthServiceData {
   kind: string;
@@ -13,8 +15,10 @@ export interface AuthServiceData {
   registered?: boolean;
 }
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class AuthService {
+  user = new Subject<User>();
+
   constructor(private httpclient: HttpClient) {}
 
   signup(email: string, pass: string) {
@@ -27,18 +31,51 @@ export class AuthService {
           returnSecureToken: true
         }
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+          this.handleAuthenticated(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
+        })
+      );
   }
 
   login(email: string, pass: string) {
-    return this.httpclient.post<AuthServiceData>(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBhlzDDpekDk7sH0Yw91GNEKYTAPkse3ds",
-      {
-        email: email,
-        password: pass,
-        returnSecureToken: true
-      }
-    ).pipe(catchError(this.handleError));
+    return this.httpclient
+      .post<AuthServiceData>(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBhlzDDpekDk7sH0Yw91GNEKYTAPkse3ds",
+        {
+          email: email,
+          password: pass,
+          returnSecureToken: true
+        }
+      )
+      .pipe(
+        catchError(this.handleError),
+        tap(resData => {
+          this.handleAuthenticated(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            +resData.expiresIn
+          );
+        })
+      );
+  }
+
+  private handleAuthenticated(
+    email: string,
+    userID: string,
+    token: string,
+    expiresIn: Number
+  ) {
+    const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
+    const user = new User(email, userID, token, expirationDate);
+    this.user.next(user);
   }
 
   private handleError(errorres: HttpErrorResponse) {
@@ -50,13 +87,13 @@ export class AuthService {
       case "EMAIL_EXISTS":
         errorMsg = "EmailId already exist in database";
         break;
-        case "EMAIL_NOT_FOUND":
+      case "EMAIL_NOT_FOUND":
         errorMsg = "EmailId already doesn't exist in database";
         break;
-        case "INVALID_PASSWORD":
+      case "INVALID_PASSWORD":
         errorMsg = "Wrong password entered";
         break;
-        case "USER_DISABLED":
+      case "USER_DISABLED":
         errorMsg = "This account is not active";
         break;
     }
