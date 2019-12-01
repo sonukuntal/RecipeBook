@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, tap } from "rxjs/operators";
-import { throwError, Subject,BehaviorSubject } from "rxjs";
+import { throwError, Subject, BehaviorSubject } from "rxjs";
 
 import { User } from "./user.model";
 
@@ -76,6 +76,28 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
     const user = new User(email, userID, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem("userData", JSON.stringify(user));
+  }
+
+  private autologin() {
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem("userData"));
+    if (!userData) {
+      return;
+    }
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+    }
   }
 
   private handleError(errorres: HttpErrorResponse) {
