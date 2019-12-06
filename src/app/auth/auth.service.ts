@@ -82,7 +82,7 @@ export class AuthService {
     localStorage.setItem("userData", JSON.stringify(user));
   }
 
-  private autologin() {
+   autologin() {
     const userData: {
       email: string;
       id: string;
@@ -117,7 +117,7 @@ export class AuthService {
     this.tokenExpirationTimer=null;
   }
 
-  private autologout(expirationduration:number)
+   autologout(expirationduration:number)
   {
    this.tokenExpirationTimer= setTimeout(()=>{
       this.logout();
