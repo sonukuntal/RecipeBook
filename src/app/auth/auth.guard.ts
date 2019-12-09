@@ -9,14 +9,14 @@ import { map, tap,take } from "rxjs/operators";
 import { Router,UrlTree } from "@angular/router";
 import { AuthService } from "./auth.service";
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot
-  ): boolean | UrlTree | Promise<boolean>|UrlTree | Observable<boolean>|UrlTree {
+  ): boolean | UrlTree | Promise<boolean|UrlTree> | Observable<boolean|UrlTree> {
     return this.authService.user.pipe(
       take(1),
       map(user => {

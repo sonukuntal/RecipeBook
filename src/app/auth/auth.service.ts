@@ -105,7 +105,7 @@ export class AuthService {
     }
   }
 
-  private logout()
+   logout()
   {
     this.user.next(null);
     this.router.navigate(['/auth']);
