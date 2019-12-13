@@ -1,49 +1,42 @@
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from "./app-routing.module";
-
 import { AppComponent } from "./app.component";
-
 import { HeaderComponent } from "./header/header.component";
-import { DropdownDirective } from "./shared/dropdown.model";
 import { RecipiesService } from "./recipies/recipies.service";
-import { ShoopingListService } from './shooping-list/shooping-list.service';
+import { ShoopingListService } from "./shooping-list/shooping-list.service";
 import { ErrorpageComponent } from "./errorpage/errorpage.component";
 import { DataStorageService } from "./shared/data-storage.service";
 import { RecipiesResolverService } from "./recipies/recipies-resolver.service";
 import { AuthComponent } from "./auth/auth.component";
 import { AuthService } from "./auth/auth.service";
-import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinner.component";
 import { AuthGuard } from "./auth/auth.guard";
-import { AlertComponent } from "./shared/alert/alert.component";
-import { PlaceholderDirective } from "./shared/placeholder.directive";
-import {RecipiesModule} from './recipies/recipies.module';
-import {ShoopingModule} from './shooping-list/shooping.module';
+
+import { RecipiesModule } from "./recipies/recipies.module";
+import { ShoopingModule } from "./shooping-list/shooping.module";
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   imports: [
+    RecipiesModule,
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     ReactiveFormsModule,
+    ShoopingModule,
     HttpClientModule,
-    RecipiesModule,
-    ShoopingModule
+    SharedModule,
+    AppRoutingModule,
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
-    DropdownDirective,
     ErrorpageComponent,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
-    PlaceholderDirective
+    AuthComponent
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AlertComponent],
   providers: [
     ShoopingListService,
     RecipiesService,

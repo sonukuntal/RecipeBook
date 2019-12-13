@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { RecipieRouterModule } from "./recipie-router.module";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {CommonModule} from '@angular/common';
+import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
 
 import { RecipiesComponent } from "./recipies.component";
@@ -12,7 +12,7 @@ import { RecipeEditComponent } from "./recipe-edit/recipe-edit.component";
 import { RecipeStartComponent } from "./recipe-start/recipe-start.component";
 
 @NgModule({
-  imports: [RouterModule,RecipieRouterModule,CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [RouterModule,RecipieRouterModule,FormsModule,ReactiveFormsModule,SharedModule],
   declarations: [
     RecipiesComponent,
     RecipeListComponent,
