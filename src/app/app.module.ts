@@ -5,12 +5,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from "./app.component";
-import { ShoopingListComponent } from "./shooping-list/shooping-list.component";
-import { ShoopingEditComponent } from "./shooping-list/shooping-edit/shooping-edit.component";
+
 import { HeaderComponent } from "./header/header.component";
 import { DropdownDirective } from "./shared/dropdown.model";
 import { RecipiesService } from "./recipies/recipies.service";
-import { ShoopingListService } from "./shooping-list/shooping-list.service";
+import { ShoopingListService } from './shooping-list/shooping-list.service';
 import { ErrorpageComponent } from "./errorpage/errorpage.component";
 import { DataStorageService } from "./shared/data-storage.service";
 import { RecipiesResolverService } from "./recipies/recipies-resolver.service";
@@ -21,6 +20,7 @@ import { AuthGuard } from "./auth/auth.guard";
 import { AlertComponent } from "./shared/alert/alert.component";
 import { PlaceholderDirective } from "./shared/placeholder.directive";
 import {RecipiesModule} from './recipies/recipies.module';
+import {ShoopingModule} from './shooping-list/shooping.module';
 
 @NgModule({
   imports: [
@@ -29,12 +29,11 @@ import {RecipiesModule} from './recipies/recipies.module';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RecipiesModule
+    RecipiesModule,
+    ShoopingModule
   ],
   declarations: [
     AppComponent,
-    ShoopingListComponent,
-    ShoopingEditComponent,
     HeaderComponent,
     DropdownDirective,
     ErrorpageComponent,
