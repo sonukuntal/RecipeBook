@@ -20,6 +20,7 @@ import { LoadingSpinnerComponent } from "./shared/loading-spinner/loading-spinne
 import { AuthGuard } from "./auth/auth.guard";
 import { AlertComponent } from "./shared/alert/alert.component";
 import { PlaceholderDirective } from "./shared/placeholder.directive";
+import {RecipiesModule} from './recipies/recipies.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { PlaceholderDirective } from "./shared/placeholder.directive";
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RecipiesModule
   ],
   declarations: [
     AppComponent,

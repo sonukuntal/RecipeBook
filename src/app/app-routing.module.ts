@@ -16,9 +16,7 @@ const appRoutes: Routes = [
     path: "shoopinglist",
     component: ShoopingListComponent,
     children: [{ path: ":id/:edit", component: ShoopingEditComponent }]
-  },
-  { path: "not-found", component: ErrorpageComponent },
-  { path: "**", redirectTo: "/not-found", pathMatch: "full" }
+  }
 ];
 
 @NgModule({

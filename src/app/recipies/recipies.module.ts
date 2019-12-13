@@ -13,14 +13,6 @@ import { RecipeStartComponent } from "./recipe-start/recipe-start.component";
 
 @NgModule({
   imports: [RouterModule,RecipieRouterModule,CommonModule,FormsModule,ReactiveFormsModule],
-  exports: [
-    RecipiesComponent,
-    RecipeListComponent,
-    RecipeItemComponent,
-    RecipeDetailComponent,
-    RecipeEditComponent,
-    RecipeStartComponent
-  ],
   declarations: [
     RecipiesComponent,
     RecipeListComponent,
