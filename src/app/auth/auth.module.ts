@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import { AuthComponent } from './auth.component';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule } from "@angular/router";
 import {SharedModule} from '../shared/shared.module';
 
@@ -11,7 +10,6 @@ import {SharedModule} from '../shared/shared.module';
   imports:[
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
     SharedModule,
     RouterModule.forChild( [{ path: "", component: AuthComponent }])
   ]

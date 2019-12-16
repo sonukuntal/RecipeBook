@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "./auth/auth.service";
+import {LoggingService} from './logging.service'
 
 @Component({
   selector: "my-app",
@@ -9,6 +10,7 @@ import { AuthService } from "./auth/auth.service";
 export class AppComponent implements OnInit {
   ngOnInit() {
     this.authService.autologin();
+    this.loggingService.printLog('Hello i from appcomponent ngoninit service');
   }
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private loggingService:LoggingService) {}
 }
