@@ -11,6 +11,14 @@ const appRoutes: Routes = [
   {
     path: "recipies",
     loadChildren: "./recipies/recipies.module#RecipiesModule"
+  },
+  {
+    path: "shoopinglist",
+    loadChildren: "./shooping-list/shooping.module#ShoopingModule"
+  },
+  {
+    path: "auth",
+    loadChildren: "./auth/auth.module#AuthModule"
   }
 ];
 

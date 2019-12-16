@@ -13,13 +13,10 @@ import {CoreModule} from './core.module';
 
 @NgModule({
   imports: [
-
-    ShoopingModule,
     HttpClientModule,
     SharedModule,
     AppRoutingModule,
-    CoreModule,
-    AuthModule
+    CoreModule
   ],
   declarations: [
     AppComponent,

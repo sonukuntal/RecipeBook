@@ -11,7 +11,7 @@ import { SharedModule } from "../shared/shared.module";
     FormsModule,
     RouterModule.forChild([
       {
-        path: "shoopinglist",
+        path: "",
         component: ShoopingListComponent,
         children: [{ path: ":id/:edit", component: ShoopingEditComponent }]
       }
