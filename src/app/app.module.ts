@@ -13,7 +13,7 @@ import {CoreModule} from './core.module';
 
 @NgModule({
   imports: [
-    RecipiesModule,
+
     ShoopingModule,
     HttpClientModule,
     SharedModule,

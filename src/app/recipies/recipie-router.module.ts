@@ -12,7 +12,7 @@ import { RecipiesResolverService } from "./recipies-resolver.service";
 
 const routes:Routes=[
   {
-    path: "recipies",
+    path: "",
     component: RecipiesComponent,
     canActivate:[AuthGuard],
     children: [

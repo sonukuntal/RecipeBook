@@ -7,7 +7,11 @@ import { ErrorpageComponent } from "./errorpage/errorpage.component";
 import { AuthComponent } from "./auth/auth.component";
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: "/recipies", pathMatch: "full" }
+  { path: "", redirectTo: "/recipies", pathMatch: "full" },
+  {
+    path: "recipies",
+    loadChildren: "./recipies/recipies.module#RecipiesModule"
+  }
 ];
 
 @NgModule({
