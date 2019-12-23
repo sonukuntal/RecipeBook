@@ -12,5 +12,7 @@ export function ShoopingListReducer(state = initialstate, action: shoopinglistac
       ...state,
       ingredients:[...state.ingredients,action.payload]
     }
+    default:
+    return state;
   }
 }
