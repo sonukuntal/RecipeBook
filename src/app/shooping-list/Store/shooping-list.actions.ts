@@ -11,7 +11,7 @@ constructor(public payload:ingredient){}
 }
 export class AddIngredients implements Action 
 {
-readonly type =ADD_INGREDIENT;
+readonly type =ADD_INGREDIENTS;
 constructor(public payload:ingredient[]){}
 }
 export type shoopingListAction=AddIngredient|AddIngredients;

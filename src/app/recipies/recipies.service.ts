@@ -44,7 +44,7 @@ export class RecipiesService {
 
   addingredientstoshoopinglist(ingrdt: ingredient[]) {
      //this.shoopingListService.addnewingredients(ingrdt);
-    this.store.subscribe(shoopinglistaction.AddIngredients(ingrdt));
+    this.store.dispatch(n shoopinglistaction.AddIngredients(ingrdt));
   }
 
   addnewRecipie(recipe: Recipe) {
