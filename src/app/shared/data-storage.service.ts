@@ -7,13 +7,16 @@ import { AuthService } from "../auth/auth.service";
 import { Recipe } from "../recipies/Recipe.model";
 import { ingredient } from "../shared/ingredient.model";
 import { map, tap,take,exhaustMap } from "rxjs/operators";
+import {Store} from '@ngrx/store';
+import * as  fromApp from '../store/app.reducer';
 
 @Injectable({ providedIn: "root" })
 export class DataStorageService {
   constructor(
     private httpclient: HttpClient,
     private recipeservice: RecipiesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private store:Store<fromApp.AppState>
   ) {}
 
   storeRecipes() {
@@ -29,8 +32,10 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.authService.user.pipe(
+   // return this.authService.user.pipe(
+     return this.store.select('auth').pipe(
       take(1),
+      map(authstate=>{return authstate.user}),
       exhaustMap(user => {
         return this.httpclient.get<Recipe[]>(
           'https://ng-course-recipe-book-550ed.firebaseio.com/recipies.json',
