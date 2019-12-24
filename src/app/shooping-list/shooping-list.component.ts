@@ -5,6 +5,7 @@ import { LoggingService } from "../logging.service";
 import { Subscription,Observable } from "rxjs";
 import { Store } from "@ngrx/store";
 import * as fromshoopingList from './Store/shooping-list.reducer';
+import * as  shoopingListAction from './Store/shooping-list.actions';
 
 @Component({
   selector: "app-shooping-list",
@@ -37,6 +38,7 @@ export class ShoopingListComponent implements OnInit, OnDestroy {
   }
 
   editingredients(index: number) {
-    this.shoopingListService.editingredient.next(index);
+   // this.shoopingListService.editingredient.next(index);
+   this.store.dispatch(new shoopingListAction.StartEdit(index));
   }
 }
