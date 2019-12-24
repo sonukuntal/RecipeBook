@@ -6,12 +6,11 @@ import {
   OnDestroy
 } from "@angular/core";
 import { ingredient } from "../../shared/ingredient.model";
-import { ShoopingListService } from "../shooping-list.service";
 import { NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 import * as shoopinglistaction from "../Store/shooping-list.actions";
-import * as fromshoopingList from "../Store/shooping-list.reducer";
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: "app-shooping-edit",
@@ -25,8 +24,7 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
   edititemform: ingredient;
 
   constructor(
-    private shoopingListService: ShoopingListService,
-    private store: Store<fromshoopingList.AppState>
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {

@@ -1,11 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ingredient } from "../shared/ingredient.model";
-import { ShoopingListService } from "./shooping-list.service";
 import { LoggingService } from "../logging.service";
 import { Subscription,Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import * as fromshoopingList from './Store/shooping-list.reducer';
 import * as  shoopingListAction from './Store/shooping-list.actions';
+import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: "app-shooping-list",
@@ -16,9 +15,8 @@ export class ShoopingListComponent implements OnInit, OnDestroy {
   ingredients: Observable<{ingredients:ingredient[]}>;
  // unsubsing: Subscription;
   constructor(
-    private shoopingListService: ShoopingListService,
     private loggingService: LoggingService,
-    private store:Store<fromshoopingList.AppState>
+    private store:Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {
