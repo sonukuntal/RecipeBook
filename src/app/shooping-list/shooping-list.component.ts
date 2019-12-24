@@ -4,6 +4,7 @@ import { ShoopingListService } from "./shooping-list.service";
 import { LoggingService } from "../logging.service";
 import { Subscription,Observable } from "rxjs";
 import { Store } from "@ngrx/store";
+import * as fromshoopingList from './Store/shooping-list.reducer';
 
 @Component({
   selector: "app-shooping-list",
@@ -16,7 +17,7 @@ export class ShoopingListComponent implements OnInit, OnDestroy {
   constructor(
     private shoopingListService: ShoopingListService,
     private loggingService: LoggingService,
-    private store:Store<{shoopinglist:{ingredients:ingredient[]}}>
+    private store:Store<fromshoopingList.AppState>
   ) {}
 
   ngOnInit() {

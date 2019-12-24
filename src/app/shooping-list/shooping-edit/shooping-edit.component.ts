@@ -11,6 +11,7 @@ import { NgForm } from "@angular/forms";
 import { Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 import * as shoopinglistaction from '../Store/shooping-list.actions';
+import * as fromshoopingList from '../Store/shooping-list.reducer';
 
 @Component({
   selector: "app-shooping-edit",
@@ -26,7 +27,7 @@ export class ShoopingEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private shoopingListService: ShoopingListService,
-    private store: Store<{ shoopinglist: { ingredients: ingredient[] } }>
+    private store: Store<fromshoopingList.AppState>
   ) {}
 
   ngOnInit() {
