@@ -8,10 +8,13 @@ import {
 import { NgForm } from "@angular/forms";
 import { Observable, Subscription } from "rxjs";
 import { Router } from "@angular/router";
+import { Store } from "@ngrx/store";
 
 import { AuthService, AuthServiceData } from "./auth.service";
 import { AlertComponent } from "../shared/alert/alert.component";
 import { PlaceholderDirective } from "../shared/placeholder.directive";
+import * as fromApp from "../store/app.reducer";
+import * as fromauthActions from "./auth.action";
 
 @Component({
   selector: "app-auth",
@@ -29,10 +32,19 @@ export class AuthComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private cofaResolver: ComponentFactoryResolver
+    private cofaResolver: ComponentFactoryResolver,
+    private store: Store<fromApp.AppState>
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.select("auth").subscribe(authstate => {
+      this.isLoading = authstate.loading;
+      this.error = authstate.authError;
+      if (this.error) {
+        this.showErrorAlert(this.error);
+      }
+    });
+  }
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
@@ -43,23 +55,27 @@ export class AuthComponent implements OnInit, OnDestroy {
     let authobs: Observable<AuthServiceData>;
 
     if (this.isLoginMode) {
-      authobs = this.authService.login(email, pass);
+      // authobs = this.authService.login(email, pass);
+      this.store.dispatch(
+        new fromauthActions.LoginStart({ email: email, password: pass })
+      );
     } else {
       authobs = this.authService.signup(email, pass);
       authform.reset();
     }
-    authobs.subscribe(
-      resData => {
-        console.log(resData);
-        this.isLoading = false;
-        this.router.navigate(['/recipies']);
-      },
-      errorMsg => {
-        this.error = errorMsg;
-        this.showErrorAlert(errorMsg);
-        this.isLoading = false;
-      }
-    );
+
+    // authobs.subscribe(
+    //   resData => {
+    //    console.log(resData);
+    //    this.isLoading = false;
+    //    this.router.navigate(['/recipies']);
+    //  },
+    //   errorMsg => {
+    //     this.error = errorMsg;
+    //     this.showErrorAlert(errorMsg);
+    //    this.isLoading = false;
+    //   }
+    //  );
   }
 
   onhandleerror() {
