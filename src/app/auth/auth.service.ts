@@ -5,8 +5,6 @@ import * as fromApp from "../store/app.reducer";
 import * as authActions from "./auth.action";
 
 
-
-
 @Injectable({ providedIn: "root" })
 export class AuthService {
   private tokenExpirationTimer: any;

@@ -46,7 +46,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.isLoginMode = !this.isLoginMode;
   }
   onSubmitForm(authform: NgForm) {
-    debugger;
+
     const email = authform.value.email;
     const pass = authform.value.password;
 
