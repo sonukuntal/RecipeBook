@@ -6,7 +6,7 @@ import {
   OnDestroy
 } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import {Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { Store } from "@ngrx/store";
 
 import { AlertComponent } from "../shared/alert/alert.component";
@@ -46,17 +46,14 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.isLoginMode = !this.isLoginMode;
   }
   onSubmitForm(authform: NgForm) {
-
     const email = authform.value.email;
     const pass = authform.value.password;
 
     if (this.isLoginMode) {
-      // authobs = this.authService.login(email, pass);
       this.store.dispatch(
         new fromauthActions.LoginStart({ email: email, password: pass })
       );
     } else {
-      // authobs = this.authService.signup(email, pass);
       this.store.dispatch(
         new fromauthActions.SignupStart({ email: email, password: pass })
       );
