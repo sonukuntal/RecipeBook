@@ -90,7 +90,7 @@ export class AuthEffects {
     switchMap((authData: authActions.LoginStart) => {
       return this.httpclient
         .post<AuthServiceData>(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBhlzDDpekDk7sH0Yw91GNEKYTAPkse3ds",
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBhlzDDpekDk7sH0Yw91GNEKYTAPkse3ds",
           {
             email: authData.payload.email,
             password: authData.payload.password,
@@ -114,8 +114,8 @@ export class AuthEffects {
   );
 
   @Effect({ dispatch: false })
-  authSuccess = this.actions$.pipe(
-    ofType(authActions.AUTHENTICATE_SUCCESS),
+  authRedirect = this.actions$.pipe(
+    ofType(authActions.AUTHENTICATE_SUCCESS,authActions.LOGOUT),
     tap(() => {
       this.router.navigate(["/"]);
     })

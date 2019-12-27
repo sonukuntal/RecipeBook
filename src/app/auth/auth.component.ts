@@ -50,6 +50,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.isLoginMode = !this.isLoginMode;
   }
   onSubmitForm(authform: NgForm) {
+    debugger;
     const email = authform.value.email;
     const pass = authform.value.password;
 
@@ -68,7 +69,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   onhandleerror() {
-    this.error = null;
+    this.store.dispatch(new fromauthActions.ClearError());
   }
 
   private showErrorAlert(message: string) {
