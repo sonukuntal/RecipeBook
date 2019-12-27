@@ -5,6 +5,7 @@ import { of } from "rxjs";
 import { Router } from "@angular/router";
 import * as authActions from "./auth.action";
 import { HttpClient } from "@angular/common/http";
+import { User } from "./user.model";
 
 export interface AuthServiceData {
   kind: string;
@@ -23,6 +24,8 @@ const handleAuthentication = (
   idToken: string
 ) => {
   const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
+  const user = new User(email, localId, idToken, expirationDate);
+  localStorage.setItem("userData", JSON.stringify(user));
   return new authActions.AuthenticateSuccess({
     email: email,
     userID: localId,
@@ -55,6 +58,7 @@ const handleError = (errorres: any) => {
 
 @Injectable()
 export class AuthEffects {
+
   @Effect()
   authSignup = this.actions$.pipe(
     ofType(authActions.SIGNUP_START),
@@ -113,6 +117,37 @@ export class AuthEffects {
     })
   );
 
+  @Effect()
+  autoLogin=this.actions$.pipe(
+    ofType(authActions.AUTO_LOGIN),
+    map(()=>{
+      const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem("userData"));
+    if (!userData) {
+      return {type:'dummy'};
+    }
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+    if (loadedUser.token) {
+      return new authActions.AuthenticateSuccess({
+        email:loadedUser.email,
+        userID:loadedUser.userID,
+        token:loadedUser.token,
+        expirationDate:new Date(userData._tokenExpirationDate)
+      });
+    }
+    return {type:'dummy'};
+    })
+  );
+
   @Effect({ dispatch: false })
   authRedirect = this.actions$.pipe(
     ofType(authActions.AUTHENTICATE_SUCCESS,authActions.LOGOUT),
@@ -120,6 +155,13 @@ export class AuthEffects {
       this.router.navigate(["/"]);
     })
   );
+
+  @Effect({ dispatch: false })
+  authLogout=this.actions$.pipe(
+    ofType(authActions.LOGOUT),tap(()=>{
+      localStorage.removeItem('userData');
+    })
+  )
   constructor(
     private actions$: Actions,
     private httpclient: HttpClient,
