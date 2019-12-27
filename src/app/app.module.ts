@@ -21,7 +21,7 @@ import {AuthEffects} from './auth/auth.effects';
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(authReducer.AppReducer),
-    EffectsModule.forRoot(AuthEffects)
+    EffectsModule.forRoot([AuthEffects])
   ],
   declarations: [AppComponent, HeaderComponent, ErrorpageComponent],
   bootstrap: [AppComponent],
