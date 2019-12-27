@@ -27,6 +27,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   error: string = null;
   @ViewChild(PlaceholderDirective, { static: false })
   alertHost: PlaceholderDirective;
+
   private sub: Subscription;
 
   constructor(
@@ -37,7 +38,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.store.select("auth").subscribe(authstate => {
+    this.sub = this.store.select("auth").subscribe(authstate => {
       this.isLoading = authstate.loading;
       this.error = authstate.authError;
       if (this.error) {
@@ -51,8 +52,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   onSubmitForm(authform: NgForm) {
     const email = authform.value.email;
     const pass = authform.value.password;
-    this.isLoading = true;
-    let authobs: Observable<AuthServiceData>;
 
     if (this.isLoginMode) {
       // authobs = this.authService.login(email, pass);
@@ -60,22 +59,12 @@ export class AuthComponent implements OnInit, OnDestroy {
         new fromauthActions.LoginStart({ email: email, password: pass })
       );
     } else {
-      authobs = this.authService.signup(email, pass);
+      // authobs = this.authService.signup(email, pass);
+      this.store.dispatch(
+        new fromauthActions.SignupStart({ email: email, password: pass })
+      );
       authform.reset();
     }
-
-    // authobs.subscribe(
-    //   resData => {
-    //    console.log(resData);
-    //    this.isLoading = false;
-    //    this.router.navigate(['/recipies']);
-    //  },
-    //   errorMsg => {
-    //     this.error = errorMsg;
-    //     this.showErrorAlert(errorMsg);
-    //    this.isLoading = false;
-    //   }
-    //  );
   }
 
   onhandleerror() {

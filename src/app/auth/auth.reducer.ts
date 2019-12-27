@@ -5,13 +5,13 @@ import * as AuthActions from "./auth.action";
 export interface State {
   user: User;
   authError: string;
-  loading:boolean;
+  loading: boolean;
 }
 
 const initialState: State = {
   user: null,
   authError: null,
-  loading:false
+  loading: false
 };
 
 export function AuthReducer(
@@ -19,7 +19,7 @@ export function AuthReducer(
   action: AuthActions.AuthActions
 ) {
   switch (action.type) {
-    case AuthActions.LOGIN:
+    case AuthActions.AUTHENTICATE_SUCCESS:
       const newuser = new User(
         action.payload.email,
         action.payload.userID,
@@ -30,14 +30,23 @@ export function AuthReducer(
         ...state,
         authError: null,
         user: newuser,
-        loading:false
+        loading: false
+      };
+
+    case AuthActions.SIGNUP_START:
+      const signupuser = new User(action.payload.email);
+      return {
+        ...state,
+        authError: null,
+        user: signupuser,
+        loading: false
       };
 
     case AuthActions.LOGOUT: {
       return {
         ...state,
         user: null,
-        loading:false
+        loading: false
       };
     }
 
@@ -45,14 +54,14 @@ export function AuthReducer(
       return {
         ...state,
         authError: null,
-        loading:true
+        loading: true
       };
 
-    case AuthActions.LOGIN_FAIL:
+    case AuthActions.AUTHENTICATE_FAILURE:
       return {
         ...state,
         user: null,
-        loading:false,
+        loading: false,
         authError: action.payload
       };
 
