@@ -11,7 +11,6 @@ export function RecipeReducer(
   state = initialState,
   action: RecipeAction.RecipeAction
 ) {
-  debugger;
   switch (action.type) {
     case RecipeAction.SET_RECIPE:
       return {

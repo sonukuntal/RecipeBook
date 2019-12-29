@@ -1,7 +1,7 @@
 import { Action } from "@ngrx/store";
 import { Recipe } from "../Recipe.model";
 
-const SET_RECIPE = "[recipies] SetRecipe";
+export const SET_RECIPE = "[recipies] SetRecipe";
 
 export class SetRecipe implements Action {
   readonly type = SET_RECIPE;
