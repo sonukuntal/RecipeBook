@@ -11,20 +11,6 @@ export class RecipiesService {
   recipeChange = new Subject<Recipe[]>();
   private recipies: Recipe[] = [];
 
-  //recipies:Recipe[]=[
-  //new Recipe('Test Recipe','Recipe is awesome for eating and server',
-  //'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2018/9/26/0/FNK_Tuscan-Chicken-Skillet_H2_s4x3.jpg.rend.hgtvcom.//826.620.suffix/1537973085542.jpeg',
-  //[new ingredient('meat',2),
-  // new ingredient('french fries',4)
-  //]
-  //),
-  //new Recipe('Test Recipe','Recipe is awesome for eating and server',
-  //'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2018/9/26/0/FNK_Tuscan-Chicken-Skillet_H2_s4x3.jpg.rend.hgtvcom.//826.620.suffix/1537973085542.jpeg',
-  //[new ingredient('beans',2),
-  // new ingredient('mushroom',4)
-  //]
-  //)];
-
   constructor(
     private store: Store<fromApp.AppState>
   ) {}
