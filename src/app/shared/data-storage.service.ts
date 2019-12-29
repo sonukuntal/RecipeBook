@@ -53,8 +53,8 @@ export class DataStorageService {
           };
         });
       }),
-      tap(recipes => {
-       this.store.dispatch(new fromRecipeAction.SetRecipe(recipes));
+      tap(recipies => {
+       this.store.dispatch(new fromRecipeAction.SetRecipe(recipies));
       })
     );
   }
