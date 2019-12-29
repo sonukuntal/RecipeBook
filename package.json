@@ -12,6 +12,7 @@
     "@angular/router": "8.2.14",
     "@ngrx/effects": "^8.6.0",
     "@ngrx/store": "8.6.0",
+    "@ngrx/store-devtools": "^8.6.0",
     "bootstrap": "3.4.1",
     "core-js": "2.6.11",
     "ngrx": "0.0.1-security",
