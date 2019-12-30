@@ -17,7 +17,6 @@ export class RecipeDetailComponent implements OnInit {
   constructor(private recipiesService:RecipiesService,private router:ActivatedRoute,private route:Router,private store:Store<fromApp.AppState>) { }
 
   ngOnInit() {
-
    this.router.params.pipe(map(params=>{return +params['id'];}),
    switchMap(id =>{
      this.index=id;
