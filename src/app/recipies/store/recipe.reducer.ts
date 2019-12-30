@@ -17,6 +17,7 @@ export function RecipeReducer(
         ...state,
         recipies: [...action.payload]
       };
+
     default:
       return state;
   }

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {map,switchMap} from 'rxjs/operators';
 import {Recipe} from '../Recipe.model';
 import {RecipiesService} from '../recipies.service';
 import {ActivatedRoute,Params,Router} from '@angular/router';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,14 +14,21 @@ import {ActivatedRoute,Params,Router} from '@angular/router';
 export class RecipeDetailComponent implements OnInit {
    recipe:Recipe;
    index:number;
-  constructor(private recipiesService:RecipiesService,private router:ActivatedRoute,private route:Router) { }
+  constructor(private recipiesService:RecipiesService,private router:ActivatedRoute,private route:Router,private store:Store<fromApp.AppState>) { }
 
   ngOnInit() {
-   //const id = +this.router.snapshot.params['id'];
-   this.router.params.subscribe((param:Params)=>{
-     this.index=+param['id'];
-     this.recipe=this.recipiesService.getrecipies(this.index);
+
+   this.router.params.pipe(map(params=>{return +params['id'];}),
+   switchMap(id =>{
+     this.index=id;
+     return this.store.select('recipies');
+     }),
+   map(recipestate=>{return recipestate.recipies.find((recipe,id)=>{
+    return id===this.index;
    });
+   })).subscribe(recipe=>{
+     this.recipe=recipe;
+   })
   }
   onaddtoshoopinglist()
   {
