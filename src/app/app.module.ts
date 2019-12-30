@@ -14,6 +14,7 @@ import { SharedModule } from "./shared/shared.module";
 import { CoreModule } from "./core.module";
 import * as authReducer from "./store/app.reducer";
 import {AuthEffects} from './auth/auth.effects';
+import {RecipeEffects} from './recipies/store/recipe.effects';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import {AuthEffects} from './auth/auth.effects';
     AppRoutingModule,
     CoreModule,
     StoreModule.forRoot(authReducer.AppReducer),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects,RecipeEffects]),
     StoreDevtoolsModule.instrument({}),
     StoreRouterConnectingModule.forRoot() 
   ],

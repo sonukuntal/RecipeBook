@@ -5,6 +5,7 @@ import { DataStorageService } from "../shared/data-storage.service";
 import { Store } from "@ngrx/store";
 import * as fromApp from "../store/app.reducer";
 import * as fromActions from '../auth/auth.action';
+import * as fromRecipeActions from '../recipies/store/recipe.actions';
 
 @Component({
   selector: "app-header",
@@ -44,7 +45,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onFetchData() {
-    this.dataStorage.fetchRecipes().subscribe();
+   // this.dataStorage.fetchRecipes().subscribe();
+   this.store.dispatch(new fromRecipeActions.FetchRecipe());
   }
 
   ngOnDestroy() {
