@@ -34,7 +34,7 @@ export function AuthReducer(
       };
 
     case AuthActions.SIGNUP_START:
-      const signupuser = new User(action.payload.email);
+      const signupuser = new User(action.payload.email,action.payload.userID,action.payload.token,);
       return {
         ...state,
         authError: null,
